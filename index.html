@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logistic Sheet App</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <h1>Logistic Sheet Generator</h1>
+
+  <section>
+    <label for="csvFile">Import product list (.csv):</label>
+    <input type="file" id="csvFile" accept=".csv" />
+  </section>
+
+  <section>
+    <label for="productSelect">Select a product:</label>
+    <select id="productSelect">
+      <option disabled selected>Select a product...</option>
+    </select>
+  </section>
+
+  <section id="logisticFormSection" style="display: none;">
+    <h2>Logistic Sheet Details</h2>
+    <form id="logisticForm">
+      <label>Units per box: <input type="number" name="unitsPerBox" required /></label>
+      <label>Units per pallet: <input type="number" name="unitsPerPallet" required /></label>
+      <label>Box dimensions (cm):</label>
+      <input type="number" name="boxLength" placeholder="Length" required />
+      <input type="number" name="boxWidth" placeholder="Width" required />
+      <input type="number" name="boxHeight" placeholder="Height" required />
+      <label>Gross weight per box (kg): <input type="number" step="0.01" name="grossWeightBox" required /></label>
+      <label>Net weight per box (kg): <input type="number" step="0.01" name="netWeightBox" required /></label>
+      <label>Pallet layers: <input type="number" name="palletLayers" required /></label>
+      <label>Total pallet height (cm): <input type="number" name="palletHeight" required /></label>
+      <br /><br />
+      <button type="submit">Create logistic sheet</button>
+    </form>
+  </section>
+  
+  <section id="completedListSection" style="display: none;">
+    <h2>Completed Logistic Sheets</h2>
+    <table id="logisticTable" border="1" cellpadding="5" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Product Code</th>
+          <th>Product Name</th>
+          <th>Units/Box</th>
+          <th>Units/Pallet</th>
+          <th>Box (L×W×H)</th>
+          <th>Gross Weight (kg)</th>
+          <th>Net Weight (kg)</th>
+          <th>Pallet Layers</th>
+          <th>Pallet Height (cm)</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <br />
+    <button id="exportBtn">Export CSV</button>
+  </section>
+  
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
